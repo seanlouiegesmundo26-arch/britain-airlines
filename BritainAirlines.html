@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Britain Airlines - The Pride of British Aviation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f0f0f0;
+        }
+
+        /* Animated Wavy Stripes Background */
+        .wavy-container {
+            position: relative;
+            background: white;
+            margin: 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Wavy Border Animation */
+        @keyframes wave {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-5px) translateY(-5px); }
+            50% { transform: translateX(0) translateY(-10px); }
+            75% { transform: translateX(5px) translateY(-5px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
+        @keyframes wave-reverse {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(5px) translateY(5px); }
+            50% { transform: translateX(0) translateY(10px); }
+            75% { transform: translateX(-5px) translateY(5px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
+        /* SVG Wavy Borders */
+        .wavy-border {
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            left: 0;
+            z-index: 10;
+        }
+
+        .wavy-top {
+            top: 0;
+            animation: wave 4s ease-in-out infinite;
+        }
+
+        .wavy-bottom {
+            bottom: 0;
+            animation: wave-reverse 4s ease-in-out infinite;
+            transform: rotate(180deg);
+        }
+
+        .wavy-left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            animation: wave 5s ease-in-out infinite;
+        }
+
+        .wavy-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            animation: wave-reverse 5s ease-in-out infinite;
+        }
+
+        /* Header with Wavy Underline */
+        header {
+            background: linear-gradient(135deg, #012169 0%, #001a4d 100%);
+            color: white;
+            padding: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23c8102e" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            animation: wave 6s ease-in-out infinite;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: #c8102e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32pt;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 0 20px rgba(200, 16, 46, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .logo-text h1 {
+            font-size: 36pt;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .logo-text p {
+            font-size: 14pt;
+            opacity: 0.9;
+            font-style: italic;
+            color: #ffcccc;
+        }
+
+        /* Navigation with Wavy Hover */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 12pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #c8102e;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            border-radius: 2px;
+        }
+
+        nav a:hover::before {
+            transform: scaleX(1);
+        }
+
+        nav a::after {
+            content: '✈';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.3s;
+            font-size: 16pt;
+        }
+
+        nav a:hover::after {
+            opacity: 1;
+            top: -25px;
+        }
+
+        /* Hero Section with Wavy Background */
+        .hero {
+            background: linear-gradient(135deg, #012169 0%, #001a4d 50%, #c8102e 100%);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 50px,
+                rgba(255,255,255,0.03) 50px,
+                rgba(255,255,255,0.03) 100px
+            );
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 42pt;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 14pt;
+            line-height: 2;
+            margin-bottom: 40px;
+            font-style: italic;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #c8102e;
+            color: white;
+            padding: 18px 50px;
+            text-decoration: none;
+            font-size: 12pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: 3px solid white;
+            border-radius: 50px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            background: white;
+            color: #c8102e;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Main Content Area with Wavy Frame */
+        .main-wrapper {
+            background: #f8f8f8;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .content-frame {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.1);
+        }
+
+        /* Wavy Border Decorations */
+        .frame-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .wave-stripe {
+            position: absolute;
+            width: 200%;
+            height: 20px;
+            background: repeating-linear-gradient(
+                90deg,
+                #c8102e 0px,
+                #c8102e 40px,
+                #012169 40px,
+                #012169 80px,
+                white 80px,
+                white 120px
+            );
+            opacity: 0.8;
+        }
+
+        .wave-stripe:nth-child(1) {
+            top: 20px;
+            left: -50%;
+            animation: slide 20s linear infinite;
+            transform: rotate(-2deg);
+        }
+
+        .wave-stripe:nth-child(2) {
+            top: 50px;
+            left: -50%;
+            animation: slide-reverse 25s linear infinite;
+            transform: rotate(2deg);
+        }
+
+        .wave-stripe:nth-child(3) {
+            bottom: 50px;
+            left: -50%;
+            animation: slide 22s linear infinite;
+            transform: rotate(2deg);
+        }
+
+        .wave-stripe:nth-child(4) {
+            bottom: 20px;
+            left: -50%;
+            animation: slide-reverse 18s linear infinite;
+            transform: rotate(-2deg);
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0) rotate(-2deg); }
+            100% { transform: translateX(-50%) rotate(-2deg); }
+        }
+
+        @keyframes slide-reverse {
+            0% { transform: translateX(-50%) rotate(2deg); }
+            100% { transform: translateX(0) rotate(2deg); }
+        }
+
+        /* Vertical Wavy Borders */
+        .vertical-wave {
+            position: absolute;
+            width: 20px;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg,
+                #c8102e 0px,
+                #c8102e 40px,
+                #012169 40px,
+                #012169 80px,
+                white 80px,
+                white 120px
+            );
+            top: -50%;
+            opacity: 0.8;
+        }
+
+        .vertical-wave.left {
+            left: 20px;
+            animation: vertical-slide 15s linear infinite;
+        }
+
+        .vertical-wave.right {
+            right: 20px;
+            animation: vertical-slide-reverse 15s linear infinite;
+        }
+
+        @keyframes vertical-slide {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-25%); }
+        }
+
+        @keyframes vertical-slide-reverse {
+            0% { transform: translateY(-25%); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Section Title with Wavy Underline */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 28pt;
+            color: #012169;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: inline-block;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wavy-underline {
+            width: 200px;
+            height: 10px;
+            margin: 15px auto 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 10"><path d="M0 5 Q 25 0, 50 5 T 100 5 T 150 5 T 200 5" stroke="%23c8102e" stroke-width="3" fill="none"/><path d="M0 5 Q 25 10, 50 5 T 100 5 T 150 5 T 200 5" stroke="%23012169" stroke-width="3" fill="none" transform="translate(0, 2)"/></svg>');
+            background-size: contain;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        /* About Us Section Styles */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            border-radius: 20px;
+            border-left: 8px solid #c8102e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 Q25,0 50,50 T100,50" stroke="%23c8102e" stroke-width="2" fill="none" opacity="0.2"/></svg>');
+            opacity: 0.3;
+        }
+
+        .about-text h3 {
+            font-size: 20pt;
+            color: #012169;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-text p {
+            font-size: 12pt;
+            line-height: 2;
+            color: #444;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #012169 0%, #001a4d 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: rotate 10s linear infinite;
+        }
+
+        .stat-number {
+            font-size: 32pt;
+            font-weight: bold;
+            color: #c8102e;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image {
+            position: relative;
+            height: 100%;
+            min-height: 400px;
+            background: linear-gradient(135deg, #012169 0%, #c8102e 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="white" stroke-width="0.5" fill="none" opacity="0.1"/><circle cx="50" cy="50" r="30" stroke="white" stroke-width="0.5" fill="none" opacity="0.1"/><circle cx="50" cy="50" r="20" stroke="white" stroke-width="0.5" fill="none" opacity="0.1"/></svg>');
+            animation: rotate 30s linear infinite;
+        }
+
+        .about-image-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+            padding: 40px;
+        }
+
+        .about-image-content h3 {
+            font-size: 24pt;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .about-image-content p {
+            font-size: 14pt;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                #c8102e 0px,
+                #c8102e 10px,
+                #012169 10px,
+                #012169 20px
+            );
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 400px;
+            border: 3px solid #012169;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: #c8102e;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #c8102e;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #012169;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-year {
+            font-size: 18pt;
+            color: #c8102e;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 14pt;
+            color: #012169;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .timeline-desc {
+            font-size: 11pt;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Destinations Section */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+            border: 3px solid transparent;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            border-color: #c8102e;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .destination-header {
+            height: 200px;
+            background: linear-gradient(135deg, #012169 0%, #001a4d 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .destination-header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,255,0.05) 20px,
+                rgba(255,255,255,0.05) 40px
+            );
+            animation: rotate 20s linear infinite;
+        }
+
+        .destination-code {
+            font-size: 48pt;
+            font-weight: bold;
+            color: rgba(255,255,255,0.2);
+            position: absolute;
+            z-index: 1;
+        }
+
+        .destination-icon {
+            font-size: 60pt;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        .destination-body {
+            padding: 25px;
+            position: relative;
+        }
+
+        .destination-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                #c8102e 0px,
+                #c8102e 10px,
+                #012169 10px,
+                #012169 20px
+            );
+        }
+
+        .destination-name {
+            font-size: 18pt;
+            color: #012169;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .destination-country {
+            font-size: 12pt;
+            color: #c8102e;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .destination-desc {
+            font-size: 11pt;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .destination-stats {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .dest-stat {
+            text-align: center;
+        }
+
+        .dest-stat-value {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #012169;
+        }
+
+        .dest-stat-label {
+            font-size: 9pt;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .route-map {
+            background: linear-gradient(135deg, #012169 0%, #001a4d 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .route-map::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.3"/><circle cx="80" cy="40" r="2" fill="white" opacity="0.3"/><circle cx="40" cy="70" r="2" fill="white" opacity="0.3"/><circle cx="70" cy="80" r="2" fill="white" opacity="0.3"/><line x1="20" y1="20" x2="80" y2="40" stroke="white" stroke-width="0.5" opacity="0.2" stroke-dasharray="5,5"/><line x1="80" y1="40" x2="40" y2="70" stroke="white" stroke-width="0.5" opacity="0.2" stroke-dasharray="5,5"/></svg>');
+            background-size: 200px 200px;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .route-map h3 {
+            font-size: 24pt;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .route-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .route-stat-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .route-stat-box:hover {
+            background: rgba(200, 16, 46, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .route-stat-number {
+            font-size: 28pt;
+            font-weight: bold;
+            color: #c8102e;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .route-stat-label {
+            font-size: 11pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Aircraft Cards with Wavy Borders */
+        .category-section {
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .category-header {
+            display: inline-block;
+            background: linear-gradient(135deg, #c8102e 0%, #a00d24 100%);
+            color: white;
+            padding: 15px 40px;
+            margin-bottom: 40px;
+            font-size: 16pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%, 5% 50%);
+            box-shadow: 0 5px 20px rgba(200, 16, 46, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .aircraft-card {
+            background: white;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .aircraft-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                #c8102e 0px,
+                #c8102e 20px,
+                #012169 20px,
+                #012169 40px
+            );
+            animation: stripe-move 10s linear infinite;
+        }
+
+        @keyframes stripe-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 0; }
+        }
+
+        .aircraft-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 20px 50px rgba(1, 33, 105, 0.2);
+        }
+
+        .aircraft-header {
+            background: linear-gradient(135deg, #012169 0%, #001a4d 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aircraft-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 25 0, 50 5 T 100 5" stroke="white" stroke-width="2" fill="none"/></svg>');
+            background-size: 50px 100%;
+        }
+
+        .aircraft-header h3 {
+            font-size: 18pt;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .aircraft-type {
+            background: #c8102e;
+            padding: 8px 20px;
+            font-size: 10pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 20px;
+            border: 2px solid white;
+        }
+
+        .aircraft-body {
+            padding: 25px;
+            position: relative;
+        }
+
+        /* Wavy Divider */
+        .wavy-divider {
+            height: 15px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 10 Q 25 0, 50 10 T 100 10" stroke="%23c8102e" stroke-width="2" fill="none" opacity="0.5"/><path d="M0 10 Q 25 20, 50 10 T 100 10" stroke="%23012169" stroke-width="2" fill="none" opacity="0.5" transform="translate(0, 2)"/></svg>');
+            background-size: 100px 100%;
+            margin: 20px 0;
+            animation: wave-scroll 10s linear infinite;
+        }
+
+        @keyframes wave-scroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 0; }
+        }
+
+        .aircraft-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            border-left: 4px solid #c8102e;
+            transition: all 0.3s;
+        }
+
+        .spec-item:hover {
+            background: #e8f0ff;
+            border-left-color: #012169;
+            transform: translateX(5px);
+        }
+
+        .spec-label {
+            font-size: 9pt;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .spec-value {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #012169;
+        }
+
+        .aircraft-description {
+            font-size: 12pt;
+            color: #444;
+            line-height: 1.9;
+            text-align: justify;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            border-radius: 15px;
+            border: 2px solid #e0e0e0;
+            position: relative;
+        }
+
+        .aircraft-description::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 40pt;
+            color: #c8102e;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        /* Footer with Wavy Top */
+        footer {
+            background: #012169;
+            color: white;
+            padding: 60px 40px 30px;
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-wave-top {
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none"><path fill="%23f8f8f8" d="M0,50 C240,100 480,0 720,50 C960,100 1200,0 1440,50 L1440,0 L0,0 Z"></path><path fill="%23c8102e" d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 L1440,0 L0,0 Z" opacity="0.5"></path></svg>');
+            background-size: cover;
+            animation: wave-slow 8s ease-in-out infinite;
+        }
+
+        @keyframes wave-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section h4 {
+            font-size: 14pt;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #c8102e;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: repeating-linear-gradient(
+                90deg,
+                #c8102e 0px,
+                #c8102e 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            border-radius: 2px;
+        }
+
+        .footer-section p, .footer-section a {
+            font-size: 12pt;
+            color: #ccc;
+            text-decoration: none;
+            line-height: 2;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 3px solid rgba(255,255,255,0.1);
+            font-size: 11pt;
+            color: #888;
+            position: relative;
+        }
+
+        .footer-bottom::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: #c8102e;
+            border-radius: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .hero h2 {
+                font-size: 28pt;
+            }
+
+            .content-frame {
+                padding: 30px 20px;
+            }
+
+            .fleet-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .aircraft-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .timeline-content::before {
+                left: -40px !important;
+                right: auto !important;
+            }
+        }
+
+        /* Floating Aircraft Icons */
+        .floating-plane {
+            position: fixed;
+            font-size: 24pt;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 1000;
+            animation: fly 20s linear infinite;
+        }
+
+        @keyframes fly {
+            0% { transform: translateX(-100px) translateY(100vh) rotate(45deg); }
+            100% { transform: translateX(100vw) translateY(-100px) rotate(45deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Planes Background -->
+    <div class="floating-plane" style="top: 10%; animation-delay: 0s;">✈</div>
+    <div class="floating-plane" style="top: 30%; animation-delay: 5s;">✈</div>
+    <div class="floating-plane" style="top: 60%; animation-delay: 10s;">✈</div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">BA</div>
+                <div class="logo-text">
+                    <h1>Britain Airlines</h1>
+                    <p>The Pride of British Aviation</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#fleet">Fleet</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-waves"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Welcome Aboard Britain Airlines</h2>
+            <p>Experience the majesty of British aviation heritage combined with modern excellence. Our diverse fleet serves over 150 destinations worldwide with the reliability and sophistication you expect from the United Kingdom's premier carrier.</p>
+            <a href="#about" class="cta-button">Discover Our Story</a>
+        </div>
+    </section>
+
+    <!-- Main Content with Wavy Frame -->
+    <div class="main-wrapper">
+        <div class="content-frame">
+            
+            <!-- Animated Border Decorations -->
+            <div class="frame-decoration">
+                <div class="wave-stripe"></div>
+                <div class="wave-stripe"></div>
+                <div class="wave-stripe"></div>
+                <div class="wave-stripe"></div>
+                <div class="vertical-wave left"></div>
+                <div class="vertical-wave right"></div>
+            </div>
+
+            <!-- ABOUT US SECTION -->
+            <div class="section-title" id="about">
+                <h2>About Britain Airlines</h2>
+                <div class="wavy-underline"></div>
+            </div>
+
+            <div class="about-container">
+                <div class="about-text">
+                    <h3>Our Heritage</h3>
+                    <p>Founded in 1974 from the merger of British Overseas Airways Corporation and British European Airways, Britain Airlines carries the legacy of British aviation excellence. From the pioneering days of the Comet to the modern A350, we have consistently set the standard for air travel.</p>
+                    <p>Our mission is simple: to connect the United Kingdom with the world while maintaining the highest standards of safety, service, and British hospitality. With our headquarters at London Heathrow, we operate from the heart of one of the world's most dynamic cities.</p>
+                    <p>Today, Britain Airlines serves over 150 destinations across 80 countries, carrying more than 45 million passengers annually. Our diverse fleet of over 280 aircraft ranges from the versatile Twin Otter to the magnificent A380.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <span class="stat-number">45M+</span>
+                            <span class="stat-label">Passengers Annually</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">280+</span>
+                            <span class="stat-label">Aircraft Fleet</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Destinations</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">50</span>
+                            <span class="stat-label">Years of Service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <div class="about-image-content">
+                        <div style="font-size: 80pt; margin-bottom: 20px;">👑</div>
+                        <h3>British Excellence</h3>
+                        <p>"We don't just fly to destinations, we deliver British hospitality, innovation, and tradition to every corner of the globe. From the moment you step aboard, you experience the finest of British culture."</p>
+                        <p style="margin-top: 20px; font-size: 12pt;">— Sir Reginald P. Whitmore,<br>Founder & First Chairman</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="section-title">
+                <h2>Our Journey Through Time</h2>
+                <div class="wavy-underline"></div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1974</div>
+                        <div class="timeline-title">The Merger</div>
+                        <div class="timeline-desc">Britain Airlines formed from the merger of BOAC and BEA, creating the UK's first comprehensive international and domestic carrier.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1976</div>
+                        <div class="timeline-title">Concorde Era</div>
+                        <div class="timeline-desc">Became one of only two airlines to operate the Concorde supersonic airliner, offering London-New York flights in under 3.5 hours.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1990s</div>
+                        <div class="timeline-title">Global Expansion</div>
+                        <div class="timeline-desc">Expanded route network to Asia-Pacific and South America, establishing Heathrow as a true global hub.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2008</div>
+                        <div class="timeline-title">Terminal 5</div>
+                        <div class="timeline-desc">Moved to the state-of-the-art Terminal 5 at Heathrow, designed exclusively for Britain Airlines operations.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2013</div>
+                        <div class="timeline-title">A380 Arrival</div>
+                        <div class="timeline-desc">Introduced the Airbus A380, the world's largest passenger aircraft, on high-demand routes to Dubai and Singapore.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-title">A350 XWB</div>
+                        <div class="timeline-desc">Welcomed the Airbus A350-1000, featuring the world's most advanced cabin design and fuel efficiency.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-title">50th Anniversary</div>
+                        <div class="timeline-desc">Celebrated 50 years of connecting Britain to the world, with special retro liveries and commemorative flights.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESTINATIONS SECTION -->
+            <div class="section-title" id="destinations" style="margin-top: 80px;">
+                <h2>Our Destinations</h2>
+                <div class="wavy-underline"></div>
+            </div>
+
+            <div class="destinations-grid">
+                
+                <!-- London -->
+                <div class="destination-card">
+                    <div class="destination-header">
+                        <div class="destination-code">LHR</div>
+                        <div class="destination-icon">🇬🇧</div>
+                    </div>
+                    <div class="destination-body">
+                        <div class="destination-name">London Heathrow</div>
+                        <div class="destination-country">🏴󠁧󠁢󠁥󠁮󠁧󠁿 United Kingdom</div>
+                        <div class="destination-desc">Our home and flagship hub. London Heathrow is one of the world's busiest international airports and Britain Airlines' headquarters. Connect to over 180 destinations worldwide from this historic aviation gateway.</div>
+                        <div class="destination-stats">
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">5</div>
+                                <div class="dest-stat-label">Terminals</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">2</div>
+                                <div class="dest-stat-label">Runways</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">80M</div>
+                                <div class="dest-stat-label">Passengers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New York -->
+                <div class="destination-card">
+                    <div class="destination-header">
+                        <div class="destination-code">JFK</div>
+                        <div class="destination-icon">🇺🇸</div>
+                    </div>
+                    <div class="destination-body">
+                        <div class="destination-name">New York JFK</div>
+                        <div class="destination-country">🇺🇸 United States</div>
+                        <div class="destination-desc">The city that never sleeps and our most important transatlantic destination. Britain Airlines operates up to 12 daily flights to JFK, offering premium services including our exclusive Club World cabin.</div>
+                        <div class="destination-stats">
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">12</div>
+                                <div class="dest-stat-label">Daily Flights</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">7h</div>
+                                <div class="dest-stat-label">Flight Time</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">T7</div>
+                                <div class="dest-stat-label">Terminal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dubai -->
+                <div class="destination-card">
+                    <div class="destination-header">
+                        <div class="destination-code">DXB</div>
+                        <div class="destination-icon">🇦🇪</div>
+                    </div>
+                    <div class="destination-body">
+                        <div class="destination-name">Dubai International</div>
+                        <div class="destination-country">🇦🇪 United Arab Emirates</div>
+                        <div class="destination-desc">The gateway between East and West. Our A380 superjumbos serve this route daily, connecting British travelers to the Middle East's business and leisure capital with unmatched luxury.</div>
+                        <div class="destination-stats">
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">3</div>
+                                <div class="dest-stat-label">Daily A380s</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">7h</div>
+                                <div class="dest-stat-label">Flight Time</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">A380</div>
+                                <div class="dest-stat-label">Aircraft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Singapore -->
+                <div class="destination-card">
+                    <div class="destination-header">
+                        <div class="destination-code">SIN</div>
+                        <div class="destination-icon">🇸🇬</div>
+                    </div>
+                    <div class="destination-body">
+                        <div class="destination-name">Singapore Changi</div>
+                        <div class="destination-country">🇸🇬 Singapore</div>
+                        <div class="destination-desc">Voted world's best airport, Changi is our Asia-Pacific gateway. Britain Airlines operates daily A350 services to this garden city, connecting to our extensive network across Southeast Asia and Australia.</div>
+                        <div class="destination-stats">
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">13h</div>
+                                <div class="dest-stat-label">Flight Time</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">2</div>
+                                <div class="dest-stat-label">Daily Flights</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">A350</div>
+                                <div class="dest-stat-label">Aircraft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sydney -->
+                <div class="destination-card">
+                    <div class="destination-header">
+                        <div class="destination-code">SYD</div>
+                        <div class="destination-icon">🇦🇺</div>
+                    </div>
+                    <div class="destination-body">
+                        <div class="destination-name">Sydney Kingsford Smith</div>
+                        <div class="destination-country">🇦🇺 Australia</div>
+                        <div class="destination-desc">Our flagship ultra-long-haul route. The journey to Sydney represents the ultimate test of our long-haul capabilities, served by our most advanced 777 and A350 aircraft with fully flat beds in all premium cabins.</div>
+                        <div class="destination-stats">
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">22h</div>
+                                <div class="dest-stat-label">Flight Time</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">1</div>
+                                <div class="dest-stat-label">Daily Flight</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">777</div>
+                                <div class="dest-stat-label">Aircraft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tokyo -->
+                <div class="destination-card">
+                    <div class="destination-header">
+                        <div class="destination-code">HND</div>
+                        <div class="destination-icon">🇯🇵</div>
+                    </div>
+                    <div class="destination-body">
+                        <div class="destination-name">Tokyo Haneda</div>
+                        <div class="destination-country">🇯🇵 Japan</div>
+                        <div class="destination-desc">Our gateway to Japan operates daily to both Haneda and Narita. Experience the perfect blend of British service and Japanese precision on this popular business and leisure route.</div>
+                        <div class="destination-stats">
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">12h</div>
+                                <div class="dest-stat-label">Flight Time</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">2</div>
+                                <div class="dest-stat-label">Daily Flights</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">787</div>
+                                <div class="dest-stat-label">Aircraft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paris -->
+                <div class="destination-card">
+                    <div class="destination-header">
+                        <div class="destination-code">CDG</div>
+                        <div class="destination-icon">🇫🇷</div>
+                    </div>
+                    <div class="destination-body">
+                        <div class="destination-name">Paris Charles de Gaulle</div>
+                        <div class="destination-country">🇫🇷 France</div>
+                        <div class="destination-desc">Our closest international neighbor and most frequent destination. With over 20 daily flights, we offer unparalleled connectivity between London and Paris for business and leisure travelers alike.</div>
+                        <div class="destination-stats">
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">20+</div>
+                                <div class="dest-stat-label">Daily Flights</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">1h 15m</div>
+                                <div class="dest-stat-label">Flight Time</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">A320</div>
+                                <div class="dest-stat-label">Aircraft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cape Town -->
+                <div class="destination-card">
+                    <div class="destination-header">
+                        <div class="destination-code">CPT</div>
+                        <div class="destination-icon">🇿🇦</div>
+                    </div>
+                    <div class="destination-body">
+                        <div class="destination-name">Cape Town International</div>
+                        <div class="destination-country">🇿🇦 South Africa</div>
+                        <div class="destination-desc">The jewel of South Africa and our African flagship route. Britain Airlines operates seasonal double-daily services during the Northern winter, connecting British travelers to summer sunshine.</div>
+                        <div class="destination-stats">
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">12h</div>
+                                <div class="dest-stat-label">Flight Time</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">Seasonal</div>
+                                <div class="dest-stat-label">Service</div>
+                            </div>
+                            <div class="dest-stat">
+                                <div class="dest-stat-value">777</div>
+                                <div class="dest-stat-label">Aircraft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Route Map Summary -->
+            <div class="route-map">
+                <h3>🌍 Our Global Network</h3>
+                <div class="route-stats">
+                    <div class="route-stat-box">
+                        <span class="route-stat-number">6</span>
+                        <span class="route-stat-label">Continents Served</span>
+                    </div>
+                    <div class="route-stat-box">
+                        <span class="route-stat-number">80+</span>
+                        <span class="route-stat-label">Countries</span>
+                    </div>
+                    <div class="route-stat-box">
+                        <span class="route-stat-number">150+</span>
+                        <span class="route-stat-label">Cities</span>
+                    </div>
+                    <div class="route-stat-box">
+                        <span class="route-stat-number">3,000+</span>
+                        <span class="route-stat-label">Weekly Flights</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLEET SECTION -->
+            <div class="section-title" id="fleet" style="margin-top: 80px;">
+                <h2>Our Aircraft Fleet</h2>
+                <div class="wavy-underline"></div>
+            </div>
+
+            <!-- Regional Aircraft -->
+            <div class="category-section" id="regional">
+                <div class="category-header">Regional Fleet</div>
+                <div class="fleet-grid">
+                    
+                    <!-- DHC-6 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>DHC-6 Twin Otter</h3>
+                            <span class="aircraft-type">Turboprop</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">19 Passengers</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">1,427 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Cruise Speed</span>
+                                    <span class="spec-value">267 km/h</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Introduced</span>
+                                    <span class="spec-value">1965</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The de Havilland Canada DHC-6 Twin Otter is a Canadian STOL (Short Takeoff and Landing) utility aircraft. Britain Airlines operates this legendary turboprop for remote island services and challenging airfields across the Scottish Highlands and Channel Islands. Its exceptional short-field performance and rugged reliability make it perfect for connecting smaller communities.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ATR-72 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>ATR 72</h3>
+                            <span class="aircraft-type">Regional</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">72 Passengers</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">1,528 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Cruise Speed</span>
+                                    <span class="spec-value">511 km/h</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Manufacturer</span>
+                                    <span class="spec-value">ATR (France/Italy)</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The ATR 72 is a twin-engine turboprop short-haul regional airliner developed in France and Italy. Britain Airlines utilizes the ATR 72-600 variant for domestic routes and short European hops. With its excellent fuel efficiency and low operating costs, it serves as the backbone of our regional network, connecting secondary cities with environmental responsibility.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CRJ-200 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>CRJ-200</h3>
+                            <span class="aircraft-type">Regional Jet</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">50 Passengers</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">3,150 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Cruise Speed</span>
+                                    <span class="spec-value">860 km/h</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Manufacturer</span>
+                                    <span class="spec-value">Bombardier</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Bombardier CRJ200 is a regional jet designed for short-haul flights. Britain Airlines deploys these efficient 50-seaters on thin routes where jet speed is required but demand doesn't justify larger aircraft. Its impressive range allows it to operate longer regional sectors while maintaining the economics that keep smaller routes viable.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E-175 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Embraer E-175</h3>
+                            <span class="aircraft-type">Regional Jet</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">76 Passengers</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">4,074 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Cruise Speed</span>
+                                    <span class="spec-value">890 km/h</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Wingspan</span>
+                                    <span class="spec-value">26.0 m</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Embraer E-175 represents the perfect balance between regional efficiency and mainline comfort. Britain Airlines operates the E-175 on high-frequency business routes and slot-constrained airports like London City. With its 2-2 seating configuration, every passenger enjoys either a window or aisle seat, embodying our commitment to passenger comfort.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Narrowbody Fleet -->
+            <div class="category-section" id="narrowbody">
+                <div class="category-header">Narrowbody Fleet</div>
+                <div class="fleet-grid">
+                    
+                    <!-- B737 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Boeing 737</h3>
+                            <span class="aircraft-type">Short-Medium Haul</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">162-210 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">6,570 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Variants</span>
+                                    <span class="spec-value">737-800/MAX 8</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Engines</span>
+                                    <span class="spec-value">CFM International</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Boeing 737 is the world's best-selling commercial jetliner. Britain Airlines operates the Next Generation and MAX variants, serving European holiday destinations and business routes. The 737's proven reliability and operating economics make it the workhorse of our short to medium-haul network, from Mediterranean resorts to Eastern European capitals.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A320 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Airbus A320</h3>
+                            <span class="aircraft-type">Short-Medium Haul</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">150-180 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">6,100 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Variants</span>
+                                    <span class="spec-value">A320ceo/neo</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Features</span>
+                                    <span class="spec-value">Fly-by-wire</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Airbus A320 family revolutionized single-aisle travel with its digital fly-by-wire controls and spacious cabin. Britain Airlines' A320neo aircraft feature fuel-efficient LEAP-1A engines and sharklet wingtips, reducing fuel consumption by 15%. These aircraft form the core of our European network, offering passengers wider seats and a quieter cabin experience.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B757 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Boeing 757</h3>
+                            <span class="aircraft-type">Medium Haul</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">200-295 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">7,250 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Engines</span>
+                                    <span class="spec-value">Rolls-Royce/P&W</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Status</span>
+                                    <span class="spec-value">Being Phased Out</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Boeing 757, often called the "flying pencil" due to its long fuselage, is a medium- to long-range narrowbody. Britain Airlines operates a reduced fleet of 757-200s primarily on high-density European routes and select transatlantic services. Known for its powerful engines and hot-and-high performance, this iconic aircraft is gradually being replaced by newer generation aircraft.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Widebody Fleet -->
+            <div class="category-section" id="widebody">
+                <div class="category-header">Widebody Fleet</div>
+                <div class="fleet-grid">
+                    
+                    <!-- B767 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Boeing 767</h3>
+                            <span class="aircraft-type">Medium Widebody</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">181-375 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">11,070 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Variants</span>
+                                    <span class="spec-value">767-300ER</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Configuration</span>
+                                    <span class="spec-value">2-3-2 Economy</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Boeing 767 was the first widebody twinjet to enter service. Britain Airlines utilizes the 767-300ER on medium-haul transatlantic routes and high-capacity Mediterranean services. Its unique 2-3-2 economy seating means only one middle seat per row, offering passengers greater comfort. The aircraft serves as a versatile bridge between our narrowbody and long-haul fleets.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B777 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Boeing 777</h3>
+                            <span class="aircraft-type">Long Haul</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">301-396 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">17,370 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Variants</span>
+                                    <span class="spec-value">777-200ER/300ER</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Engines</span>
+                                    <span class="spec-value">GE90/Trent 800</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Boeing 777, or "Triple Seven," is the world's largest twinjet and a cornerstone of Britain Airlines' long-haul fleet. Our 777-300ER aircraft feature our flagship First Class suites and fully flat business class beds. Capable of flying London to Sydney non-stop, these workhorses serve our most prestigious routes to Asia, the Americas, and Australia with exceptional reliability.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B787 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Boeing 787 Dreamliner</h3>
+                            <span class="aircraft-type">Long Haul</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">242-330 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">14,010 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Variants</span>
+                                    <span class="spec-value">787-9/10</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Features</span>
+                                    <span class="spec-value">Composite Materials</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Boeing 787 Dreamliner represents the future of sustainable long-haul travel. Constructed primarily of composite materials, it offers 20% better fuel efficiency than comparable aircraft. Britain Airlines' 787-9 features larger dimmable windows, lower cabin altitude, and higher humidity levels, reducing jet lag. These aircraft open new thin long-haul routes previously economically unviable.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A350 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Airbus A350 XWB</h3>
+                            <span class="aircraft-type">Ultra Long Haul</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">300-410 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">18,000 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Variants</span>
+                                    <span class="spec-value">A350-900/1000</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Wingspan</span>
+                                    <span class="spec-value">64.8 m</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Airbus A350 XWB (Extra Wide Body) is the most modern widebody in Britain Airlines' fleet. Featuring the quietest cabin of any twin-aisle aircraft and revolutionary Airspace interior design, our A350-1000 operates our longest routes including London-Singapore and London-Santiago. The carbon fiber fuselage and advanced aerodynamics make it the most fuel-efficient widebody flying today.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Ultra Large Aircraft -->
+            <div class="category-section" id="jumbos">
+                <div class="category-header">Ultra Large Aircraft</div>
+                <div class="fleet-grid">
+                    
+                    <!-- B747 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Boeing 747</h3>
+                            <span class="aircraft-type">Jumbo Jet</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">366-660 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">14,320 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Variants</span>
+                                    <span class="spec-value">747-400/8I</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Nickname</span>
+                                    <span class="spec-value">Queen of the Skies</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Boeing 747, the "Queen of the Skies," revolutionized air travel with its iconic hump. Britain Airlines operates the 747-400 and the advanced 747-8I on our highest-demand routes. The upper deck offers exclusive premium cabins, while the main deck provides spacious economy seating. Though being phased out in favor of twins, the 747 remains a symbol of aviation's golden age and Britain's aerospace heritage.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- A380 -->
+                    <div class="aircraft-card">
+                        <div class="aircraft-header">
+                            <h3>Airbus A380</h3>
+                            <span class="aircraft-type">Superjumbo</span>
+                        </div>
+                        <div class="aircraft-body">
+                            <div class="aircraft-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity</span>
+                                    <span class="spec-value">469-615 Pax</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Range</span>
+                                    <span class="spec-value">15,200 km</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Decks</span>
+                                    <span class="spec-value">Full Double Deck</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Wingspan</span>
+                                    <span class="spec-value">79.8 m</span>
+                                </div>
+                            </div>
+                            <div class="wavy-divider"></div>
+                            <div class="aircraft-description">
+                                The Airbus A380 is the world's largest passenger airliner and the flagship of Britain Airlines' fleet. Our A380s feature First Class suites, a business class club lounge, premium economy, and spacious economy across two full decks. Operating exclusively from London Heathrow to destinations like Dubai, Singapore, and Los Angeles, the A380 offers unparalleled space, comfort, and quietness in modern aviation.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-wave-top"></div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Britain Airlines</h4>
+                <p>Founded in 1974, Britain Airlines represents the finest traditions of British aviation. From our first BAC One-Eleven to our modern A350 fleet, we have connected the United Kingdom to the world with pride and professionalism.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#fleet">Aircraft Fleet</a>
+                <a href="#destinations">Route Map</a>
+                <a href="#frequent-flyer">Executive Club</a>
+                <a href="#cargo">Cargo Services</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Customer Relations</p>
+                <p>Waterside, Harmondsworth</p>
+                <p>London UB7 0GA</p>
+                <p>United Kingdom</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <a href="#">Twitter</a>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Britain Airlines. All rights reserved. The Red and Blue Wavy Stripes are registered trademarks.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
